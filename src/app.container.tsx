@@ -1,12 +1,9 @@
 import * as React from 'react';
-import { StyledContainer } from './app.container.styled';
+import { SearchLayout } from './layouts';
 import { NavigationBar, ContentContainer } from './components';
 
-interface AppProps {}
+interface Props {}
 
-export const App: React.FunctionComponent<AppProps> = () => (
-  <StyledContainer>
-    <NavigationBar />
-    <ContentContainer />
-  </StyledContainer>
+export const App: React.FunctionComponent<Props> = props => (
+  <SearchLayout navigationBar={<NavigationBar />} content={<ContentContainer />} />
 );
