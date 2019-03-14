@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyledContainer, NavigationBarStyled, ContentContainerStyled } from './search-layout.styled';
+import { StyledContainer, StyledNavigationBar, StyledContentContainer } from './search-layout.styled';
 
 interface AppProps {
   navigationBar: JSX.Element;
@@ -8,7 +8,7 @@ interface AppProps {
 
 export const SearchLayout: React.FunctionComponent<AppProps> = ({ navigationBar, content }) => (
   <StyledContainer>
-    <NavigationBarStyled>{navigationBar}</NavigationBarStyled>
-    <ContentContainerStyled>{content}</ContentContainerStyled>
+    <StyledNavigationBar>{navigationBar}</StyledNavigationBar>
+    <StyledContentContainer>{content}</StyledContentContainer>
   </StyledContainer>
 );
