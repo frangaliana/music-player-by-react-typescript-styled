@@ -1,28 +1,31 @@
 import styled from 'styled-components';
+import { Theme } from '../app.theme';
 
-export const StyledContainer = styled.div`
+type StyledProps = Theme & {};
+
+export const StyledContainer = styled.div<StyledProps>`
   display: grid;
   height: 100%;
   padding: 4rem;
   grid-template-areas: 'navigation-bar-item' 'content-container-item';
   grid-template-rows: 6rem auto;
   font-family: 'Open Sans', sans-serif;
-  color: ${({ theme }) => theme.palette.textColor};
+  color: ${props => props.textColor};
 `;
 
-export const StyledNavigationBar = styled.div`
+export const StyledNavigationBar = styled.div<StyledProps>`
   grid-area: navigation-bar-item;
   padding: 0 3rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: ${({ theme }) => theme.palette.primaryColor};
+  background-color: ${props => props.primaryColor};
 `;
 
-export const StyledContentContainer = styled.div`
+export const StyledContentContainer = styled.div<StyledProps>`
   grid-area: content-container-item;
   display: flex;
   justify-content: space-around;
   align-items: center;
-  background-color: ${({ theme }) => theme.palette.secondaryColor};
+  background-color: ${props => props.secondaryColor};
 `;
