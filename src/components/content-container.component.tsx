@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { StyledTitle, StyledCenterContainer } from './content-container.styled';
-import styled from 'styled-components';
 
 export const ContentContainer: React.FunctionComponent = props => {
   const result = (
