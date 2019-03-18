@@ -7,5 +7,6 @@ interface AppProps {}
 export const App: React.FunctionComponent<AppProps> = props => {
   const pageTitle = 'Music Player';
 
-  return <SearchLayout navigationBar={<NavigationBar title={pageTitle} />} content={<ContentContainer />} />;
+  // TODO: Change songs and send the songs by search
+  return <SearchLayout navigationBar={<NavigationBar title={pageTitle} />} content={<ContentContainer songs={[]} />} />;
 };

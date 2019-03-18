@@ -5,6 +5,8 @@ interface SearchComponentProps {}
 
 export const SearchComponent: React.FunctionComponent<SearchComponentProps> = props => (
   <>
-    <StyledInput />
+    <form>
+      <StyledInput />
+    </form>
   </>
 );
