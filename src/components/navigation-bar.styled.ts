@@ -1,6 +1,6 @@
-import styled from 'styled-components';
+import styled from '../styled-components';
 
-export const StyledTitle = styled.h1`
+export const StyledHeader = styled.h1`
   font-size: ${({ theme }) => theme.fonts.size.header};
-  font-weight: bold;
+  font-weight: lighter;
 `;

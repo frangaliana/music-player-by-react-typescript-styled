@@ -1,11 +1,11 @@
-import styled from 'styled-components';
+import styled from '../styled-components';
 
 export const StyledContainer = styled.div`
   display: grid;
   height: 100%;
   padding: 4rem;
   grid-template-areas: 'navigation-bar-item' 'content-container-item';
-  grid-template-rows: 6rem auto;
+  grid-template-rows: 6rem 40rem;
   font-family: 'Open Sans', sans-serif;
   color: ${({ theme }) => theme.palette.textColor};
 `;
