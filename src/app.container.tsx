@@ -10,7 +10,7 @@ export const App: React.FunctionComponent<AppProps> = props => {
   // TODO: Change songs and send the songs by search
   return (
     <SearchLayout
-      navigationBar={<NavigationBar title={pageTitle} handleChange={null} handleSearch={null} />}
+      navigationBar={<NavigationBar title={pageTitle} loading={false} handleChange={null} handleSearch={null} />}
       content={<ContentContainer songs={[]} />}
     />
   );
