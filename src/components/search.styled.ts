@@ -1,5 +1,6 @@
-import styled from 'styled-components';
+import styled from '../styled-components';
 import { SearchComponent } from './search.component';
+
 export const StyledSearch = styled(SearchComponent)``;
 
 export const StyledInput = styled.input`
