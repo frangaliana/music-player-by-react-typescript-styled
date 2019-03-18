@@ -5,11 +5,13 @@ import { StyledHeader } from './navigation-bar.styled';
 
 interface NavigationBarProps {
   title: string;
+  handleSearch: () => void;
+  handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-export const NavigationBar: React.FunctionComponent<NavigationBarProps> = ({ title }) => (
+export const NavigationBar: React.FunctionComponent<NavigationBarProps> = ({ title, handleChange, handleSearch }) => (
   <>
     <StyledHeader>{title}</StyledHeader>
-    <StyledSearch />
+    <StyledSearch handleChange={handleChange} handleSearch={handleSearch} />
   </>
 );
