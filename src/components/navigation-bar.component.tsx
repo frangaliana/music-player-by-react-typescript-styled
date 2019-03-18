@@ -5,19 +5,23 @@ import { StyledHeader } from './navigation-bar.styled';
 
 interface NavigationBarProps {
   title: string;
+  initialSearchInput: string;
   loading: boolean;
-  handleSearch: () => void;
-  handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onSearchInputUpdated: (newSearch: string) => void;
 }
 
 export const NavigationBar: React.FunctionComponent<NavigationBarProps> = ({
   title,
+  initialSearchInput,
   loading,
-  handleChange,
-  handleSearch,
+  onSearchInputUpdated,
 }) => (
   <>
     <StyledHeader>{title}</StyledHeader>
-    <SearchComponent loading={loading} handleChange={handleChange} handleSearch={handleSearch} />
+    <SearchComponent
+      initialSearchInput={initialSearchInput}
+      loading={loading}
+      onSearchInputUpdated={onSearchInputUpdated}
+    />
   </>
 );
