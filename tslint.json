@@ -1,5 +1,5 @@
 {
-  "extends": ["tslint:recommended", "tslint-react"],
+  "extends": ["tslint:recommended", "tslint-react", "tslint-react-hooks"],
   "defaultSeverity": "warning",
   "rules": {
     "align": [true, "parameters", "statements"],
@@ -50,6 +50,7 @@
     "ordered-imports": false,
     "quotemark": [true, "single", "jsx-single"],
     "radix": false,
+    "react-hooks-nesting": "error",
     "semicolon": [true, "always", "strict-bound-class-methods"],
     "trailing-comma": [
       true,

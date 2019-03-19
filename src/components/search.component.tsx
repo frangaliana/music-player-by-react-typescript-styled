@@ -2,14 +2,26 @@ import * as React from 'react';
 import { StyledInput } from './search.styled';
 
 interface SearchComponentProps {
-  handleSearch: () => void;
-  handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  initialSearch: string;
+  loading: boolean;
+  onSearchInputUpdated: (newSearch: string) => void;
 }
 
-export const SearchComponent: React.FunctionComponent<SearchComponentProps> = ({ handleSearch, handleChange }) => (
-  <>
-    <form onSubmit={handleSearch}>
-      <StyledInput onChange={handleChange} />
-    </form>
-  </>
-);
+export const SearchComponent: React.FunctionComponent<SearchComponentProps> = ({
+  initialSearch,
+  loading,
+  onSearchInputUpdated,
+}) => {
+  const [editedSearch, setEditedSearch] = React.useState(initialSearch);
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => setEditedSearch(event.target.value);
+
+  const handleSearch = () => onSearchInputUpdated(editedSearch);
+
+  return (
+    <>
+      <form onSubmit={handleSearch}>
+        <StyledInput onChange={handleChange} disabled={loading} value={editedSearch} />
+      </form>
+    </>
+  );
+};
