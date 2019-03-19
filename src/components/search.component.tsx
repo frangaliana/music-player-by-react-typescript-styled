@@ -2,17 +2,17 @@ import * as React from 'react';
 import { StyledInput } from './search.styled';
 
 interface SearchComponentProps {
-  initialSearchInput: string;
+  initialSearch: string;
   loading: boolean;
   onSearchInputUpdated: (newSearch: string) => void;
 }
 
 export const SearchComponent: React.FunctionComponent<SearchComponentProps> = ({
-  initialSearchInput,
+  initialSearch,
   loading,
   onSearchInputUpdated,
 }) => {
-  const [editedSearch, setEditedSearch] = React.useState(initialSearchInput);
+  const [editedSearch, setEditedSearch] = React.useState(initialSearch);
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => setEditedSearch(event.target.value);
 
   const handleSearch = () => onSearchInputUpdated(editedSearch);
