@@ -22,7 +22,5 @@ export const StyledNavigationBar = styled.div`
 export const StyledContentContainer = styled.div`
   grid-area: content-container-item;
   display: flex;
-  justify-content: space-around;
-  align-items: center;
   background-color: ${({ theme }) => theme.palette.secondaryColor};
 `;

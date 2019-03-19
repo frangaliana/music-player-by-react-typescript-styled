@@ -5,7 +5,10 @@ export const theme = {
     primaryColor: '#FF5018',
     secondaryColor: '#252729',
     backgroundColor: '#1A1C1E',
+    hoverColor: '#202224',
     textColor: 'white',
+    secondaryTextColor: '#ff5018',
+    tertiaryTextColor: '#6c7278',
     searchBackground: '#D94414',
   },
   fonts: {
