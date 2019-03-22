@@ -5,6 +5,7 @@ export const theme = {
     primaryColor: '#FF5018',
     secondaryColor: '#252729',
     backgroundColor: '#1A1C1E',
+    secondaryBackgroundColor: '#2C2E30',
     hoverColor: '#202224',
     textColor: 'white',
     secondaryTextColor: '#ff5018',

@@ -8,6 +8,7 @@ interface NavigationBarProps {
   initialSearch: string;
   loading: boolean;
   onSearchInputUpdated: (newSearch: string) => void;
+  changeToHome: () => void;
 }
 
 export const NavigationBar: React.FunctionComponent<NavigationBarProps> = ({
@@ -15,9 +16,10 @@ export const NavigationBar: React.FunctionComponent<NavigationBarProps> = ({
   initialSearch,
   loading,
   onSearchInputUpdated,
+  changeToHome,
 }) => (
   <>
-    <StyledHeader>{title}</StyledHeader>
+    <StyledHeader onClick={changeToHome}>{title}</StyledHeader>
     <SearchComponent initialSearch={initialSearch} loading={loading} onSearchInputUpdated={onSearchInputUpdated} />
   </>
 );
