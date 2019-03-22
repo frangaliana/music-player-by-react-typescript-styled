@@ -22,6 +22,7 @@ export const AppInner: React.FunctionComponent<AppProps> = props => {
     setSearch(newSearch);
     props.history.push('/');
   };
+  const changeToHome = () => props.history.push('/');
 
   const [songs, setSongs] = React.useState(initialSongsState);
 
@@ -53,7 +54,13 @@ export const AppInner: React.FunctionComponent<AppProps> = props => {
   return (
     <SearchLayout
       navigationBar={
-        <NavigationBar title={pageTitle} initialSearch={search} loading={false} onSearchInputUpdated={handleChange} />
+        <NavigationBar
+          title={pageTitle}
+          initialSearch={search}
+          loading={false}
+          onSearchInputUpdated={handleChange}
+          changeToHome={changeToHome}
+        />
       }
       content={
         <Switch>

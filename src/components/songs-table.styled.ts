@@ -37,5 +37,6 @@ export const StyledLinkRow = styled.tr`
   margin: 0;
   &:hover {
     background: ${({ theme }) => theme.palette.hoverColor};
+    cursor: pointer;
   }
 `;
