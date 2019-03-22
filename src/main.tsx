@@ -1,9 +1,9 @@
-import * as ReactDOM from 'react-dom';
 import * as React from 'react';
+import * as ReactDOM from 'react-dom';
 import { HashRouter } from 'react-router-dom';
-import { App } from './app.container';
 import { ThemeProvider } from 'styled-components';
-import { theme, GlobalStyle } from './app.theme';
+import { App } from './app.container';
+import { GlobalStyle, theme } from './app.theme';
 
 ReactDOM.render(
   <ThemeProvider theme={theme}>

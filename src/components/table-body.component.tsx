@@ -1,17 +1,18 @@
-import * as React from 'react';
-import { StyledLinkRow, StyledResultColumn } from './songs-table.styled';
 import { format } from 'date-fns';
+import * as React from 'react';
 import { Song } from '../models';
+import { StyledLinkRow, StyledResultColumn } from './songs-table.styled';
 
 interface TableBodyProps {
   songs: Song[];
+  onClickSong: (song: Song) => void;
 }
 
-export const TableBody: React.FunctionComponent<TableBodyProps> = ({ songs }) => (
+export const TableBody: React.FunctionComponent<TableBodyProps> = ({ songs, onClickSong }) => (
   <>
     <tbody>
       {songs.map(song => (
-        <StyledLinkRow key={song.trackId} onClick={null}>
+        <StyledLinkRow key={song.trackId} onClick={onClickSong.bind(this, song)}>
           <StyledResultColumn>
             <img src={song.artworkUrl60} />
           </StyledResultColumn>

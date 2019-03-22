@@ -13,9 +13,15 @@ interface ContentContainerProps {
   isLoading: boolean;
   search: string;
   songs: Song[];
+  onClickSong: (song: Song) => void;
 }
 
-export const ContentContainer: React.FunctionComponent<ContentContainerProps> = ({ isLoading, search, songs }) => {
+export const ContentContainer: React.FunctionComponent<ContentContainerProps> = ({
+  isLoading,
+  search,
+  songs,
+  onClickSong,
+}) => {
   const searchResult =
     songs.length === 0 ? (
       <StyledCenterContainer>
@@ -24,7 +30,7 @@ export const ContentContainer: React.FunctionComponent<ContentContainerProps> = 
       </StyledCenterContainer>
     ) : (
       <StyledSongsTableContainer>
-        <SongsTable search={search} songs={songs} />
+        <SongsTable search={search} songs={songs} onClickSong={onClickSong} />
       </StyledSongsTableContainer>
     );
 
