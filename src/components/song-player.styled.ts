@@ -30,4 +30,7 @@ export const SocialNetworksContainer = styled.div`
 
 export const ElementContainer = styled.div`
   padding: 1rem;
+  &:hover {
+    cursor: pointer;
+  }
 `;

@@ -6,6 +6,8 @@ import { ContentContainer, NavigationBar } from './components';
 import { SearchLayout } from './layouts';
 import { ResultApiModel, Song } from './models';
 import { SongComponent } from './components/song.component';
+import { PlayerAction } from './models/player-action.model';
+import { replaceSong } from './app.business';
 
 interface AppProps extends RouteComponentProps {}
 
@@ -51,6 +53,14 @@ export const AppInner: React.FunctionComponent<AppProps> = props => {
     props.history.push(`/${song.trackId}`);
   };
 
+  const handlePlayer = (action: keyof PlayerAction, song: Song) => {
+    action && song && songs
+      ? action === 'previous' || action === 'next'
+        ? setSong(replaceSong(songs, song, action))
+        : null // plays the song but I don't know what I have to do
+      : null;
+  };
+
   return (
     <SearchLayout
       navigationBar={
@@ -71,7 +81,7 @@ export const AppInner: React.FunctionComponent<AppProps> = props => {
               <ContentContainer isLoading={isLoading} search={search} songs={songs} onClickSong={onClickSong} />
             )}
           />
-          <Route exact path="/:songName" render={() => <SongComponent song={song} />} />
+          <Route exact path="/:songName" render={() => <SongComponent song={song} handlePlayer={handlePlayer} />} />
         </Switch>
       }
     />
