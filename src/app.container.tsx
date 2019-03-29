@@ -1,51 +1,36 @@
-import axios from 'axios';
 import * as React from 'react';
-import { Route, RouteComponentProps, Switch, withRouter } from 'react-router';
-import { songsApiModelToViewModel } from './app.mappers';
-import { ContentContainer, NavigationBar } from './components';
-import { SearchLayout } from './layouts';
-import { ResultApiModel, Song } from './models';
-import { SongComponent } from './components/song.component';
-import { PlayerAction } from './models/player-action.model';
+import { RouteComponentProps, Switch, Route, withRouter } from 'react-router';
+import { Song, NavigationBar, ContentContainer, SongComponent, PlayerAction } from './components';
+import { mapSongsApiModelToViewModel } from './app.mapper';
 import { replaceSong } from './app.business';
+import { SearchLayout } from './layouts';
+import { getSongs } from './api';
 
 interface AppProps extends RouteComponentProps {}
-
-const initialSearchState: string = '';
-const initialSongsState: Song[] = [];
-const initialLoadingState: boolean = false;
-const initialSongState: Song = null;
 
 export const AppInner: React.FunctionComponent<AppProps> = props => {
   const pageTitle = 'Music Player';
 
-  const [search, setSearch] = React.useState(initialSearchState);
+  const [search, setSearch] = React.useState<string>('');
   const handleChange = (newSearch: string) => {
     setSearch(newSearch);
     props.history.push('/');
   };
   const changeToHome = () => props.history.push('/');
 
-  const [songs, setSongs] = React.useState(initialSongsState);
+  const [songs, setSongs] = React.useState<Song[]>([]);
 
-  const [isLoading, setIsLoading] = React.useState(initialLoadingState);
+  const [isLoading, setIsLoading] = React.useState<boolean>(false);
 
-  const [song, setSong] = React.useState(initialSongState);
+  const [song, setSong] = React.useState<Song>(null);
 
   React.useEffect(() => {
     setIsLoading(true);
 
-    axios
-      .get<ResultApiModel>('https://itunes.apple.com/search', {
-        params: {
-          term: search,
-          limit: 5,
-        },
-      })
-      .then(result => {
-        setSongs(songsApiModelToViewModel(result.data));
-        setIsLoading(false);
-      });
+    getSongs(search).then(searchResult => {
+      setSongs(searchResult.results.map(song => mapSongsApiModelToViewModel(song)));
+      setIsLoading(false);
+    });
   }, [search]);
 
   const onClickSong = (song: Song) => {

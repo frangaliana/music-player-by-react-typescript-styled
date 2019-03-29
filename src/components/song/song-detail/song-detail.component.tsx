@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { Song } from '../models';
 import { SongDetailsContainer, StyledTrackImage, StyledTrackName, StyledCollectionName } from './song-detail.styled';
-import { SongContainer } from './song.component';
+import { SongContainer } from '../song.component';
+import { Song } from '../song.model';
 
 interface SongDetailsProps {
   songContainer: SongContainer;

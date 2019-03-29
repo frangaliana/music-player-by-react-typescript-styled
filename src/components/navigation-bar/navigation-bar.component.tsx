@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { SearchComponent } from './search.component';
+import { SearchComponent } from './search';
 import { StyledHeader } from './navigation-bar.styled';
 
 interface NavigationBarProps {

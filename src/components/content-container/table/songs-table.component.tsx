@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { Song } from '../models';
-import { StyledTable, StyledTitleSearch } from './songs-table.styled';
-import { TableBody } from './table-body.component';
+import { Song } from '../../song';
+import { StyledTitleSearch, StyledTable } from './songs-table.styled';
 import { TableHead } from './table-head.component';
+import { TableBody } from './table-body.component';
 
 interface SongsTableProps {
   search: string;

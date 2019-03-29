@@ -6,8 +6,8 @@ import {
   DotWrapper,
   Dot,
 } from './content-container.styled';
-import { Song } from '../models';
-import { SongsTable } from './songs-table.component';
+import { SongsTable } from './table';
+import { Song } from '../song';
 
 interface ContentContainerProps {
   isLoading: boolean;
@@ -25,7 +25,7 @@ export const ContentContainer: React.FunctionComponent<ContentContainerProps> = 
   const searchResult =
     songs.length === 0 ? (
       <StyledCenterContainer>
-        <img src={require('../assets/images/empty-search.svg')} alt="Empty search" />
+        <img src={require('../../assets/images/empty-search.svg')} alt="Empty search" />
         <StyledTitle>{'Use the search bar to find songs'}</StyledTitle>
       </StyledCenterContainer>
     ) : (

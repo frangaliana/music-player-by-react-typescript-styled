@@ -1,4 +1,4 @@
-import styled, { keyframes } from '../styled-components';
+import styled, { keyframes } from '../../styled-components';
 
 export const StyledCenterContainer = styled.div`
   display: flex;

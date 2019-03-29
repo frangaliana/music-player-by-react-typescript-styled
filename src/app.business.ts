@@ -1,5 +1,4 @@
-import { PlayerAction } from './models/player-action.model';
-import { Song } from './models';
+import { Song, PlayerAction } from './components';
 
 export const replaceSong = (songs: Song[], song: Song, action: keyof PlayerAction) => {
   const songIndex = songs.indexOf(song);

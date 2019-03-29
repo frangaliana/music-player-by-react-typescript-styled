@@ -1,6 +1,6 @@
 import { format } from 'date-fns';
 import * as React from 'react';
-import { Song } from '../models';
+import { Song } from '../../song';
 import { StyledLinkRow, StyledResultColumn } from './songs-table.styled';
 
 interface TableBodyProps {

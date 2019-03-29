@@ -1,5 +1,5 @@
-import styled from '../styled-components';
-import { SongContainer } from './song.component';
+import styled from '../../../styled-components';
+import { SongContainer } from '../song.component';
 
 interface StyledSongContainerProps {
   songContainer: SongContainer;

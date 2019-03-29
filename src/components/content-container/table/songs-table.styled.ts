@@ -1,7 +1,7 @@
-import styled from '../styled-components';
-import { StyledTitle } from './content-container.styled';
+import styled from '../../../styled-components';
 
-export const StyledTitleSearch = styled(StyledTitle)`
+export const StyledTitleSearch = styled.h1`
+  font-weight: lighter;
   padding-left: 2rem;
 `;
 

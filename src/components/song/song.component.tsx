@@ -1,9 +1,8 @@
 import * as React from 'react';
-import { Song } from '../models';
-import { SongDetailsComponent } from './song-detail.component';
-import { SongPlayerComponent } from './song-player.component';
+import { SongDetailsComponent } from './song-detail';
+import { SongPlayerComponent, PlayerAction } from './song-player';
 import { StyledSongContainer } from './song.styled';
-import { PlayerAction } from '../models/player-action.model';
+import { Song } from './song.model';
 
 export interface SongContainer {
   songDetails: string;
