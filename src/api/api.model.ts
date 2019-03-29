@@ -11,6 +11,7 @@ export interface Song {
   collectionName: string;
   collectionPrice: number;
   collectionViewUrl: string;
+  contentAdvisoryRating: string;
   country: string;
   currency: string;
   discCount: number;
