@@ -76,8 +76,8 @@ describe('replaceSong should retrieve previous or next song', () => {
       trackName: 'ejemplo1',
       trackPrice: 1.2,
       trackTimeMillis: 1.2,
-      isFirst: false,
-      isLast: true,
+      isFirst: true,
+      isLast: false,
     };
 
     const obtainedResult: Song = replaceSong(data, song, action);

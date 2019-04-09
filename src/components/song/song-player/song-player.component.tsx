@@ -22,7 +22,12 @@ export const SongPlayerComponent: React.FunctionComponent<SongPlayerProps> = ({
 
   return (
     <SongPlayerContainer songContainer={songContainer}>
-      <ActionPlayer isFirst={song.isFirst} isLast={song.isLast} onClickPlayer={onClickPlayer} />
+      <ActionPlayer
+        isFirst={song.isFirst}
+        isLast={song.isLast}
+        previewUrl={song.previewUrl}
+        onClickPlayer={onClickPlayer}
+      />
       <SocialNetwork onClickSocialNetwork={onClickNetwork} />
     </SongPlayerContainer>
   );

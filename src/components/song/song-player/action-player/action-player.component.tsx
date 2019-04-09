@@ -6,12 +6,26 @@ import { PlayerAction } from '../song-player.model';
 interface ActionPlayerProps {
   isFirst: boolean;
   isLast: boolean;
+  previewUrl: string;
   onClickPlayer: (action: string) => void;
 }
 
-export const ActionPlayer: React.FunctionComponent<ActionPlayerProps> = ({ isFirst, isLast, onClickPlayer }) => {
+export const ActionPlayer: React.FunctionComponent<ActionPlayerProps> = ({
+  previewUrl,
+  isFirst,
+  isLast,
+  onClickPlayer,
+}) => {
   const handleClick = (action: keyof PlayerAction) => (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    onClickPlayer(action);
+    let audio = new Audio(previewUrl);
+
+    if (action === 'play') {
+      audio.play();
+    } else if (action === 'pause') {
+      audio.pause();
+    } else {
+      onClickPlayer(action);
+    }
   };
 
   const previousSrc = isFirst
@@ -29,6 +43,9 @@ export const ActionPlayer: React.FunctionComponent<ActionPlayerProps> = ({ isFir
       </ElementContainer>
       <ElementContainer onClick={handleClick('play')}>
         <SVGLoader imageSrc={require('../../../../assets/images/player_play.svg')} />
+      </ElementContainer>
+      <ElementContainer onClick={handleClick('pause')}>
+        <SVGLoader imageSrc={require('../../../../assets/images/player_pause.svg')} />
       </ElementContainer>
       <ElementContainer onClick={handleClick('next')} disabled={isLast}>
         <SVGLoader imageSrc={nextSrc} />

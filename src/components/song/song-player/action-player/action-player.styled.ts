@@ -15,8 +15,8 @@ export const ElementContainer = styled.button`
   outline: none;
   &:hover {
     cursor: pointer;
-  }
-  &:disabled {
-    cursor: default;
+    &:disabled {
+      cursor: default;
+    }
   }
 `;
