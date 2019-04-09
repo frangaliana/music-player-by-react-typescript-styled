@@ -4,7 +4,7 @@ import { Song, NavigationBar, ContentContainer, SongComponent, PlayerAction } fr
 import { mapSongsApiModelToViewModel } from './app.mapper';
 import { replaceSong } from './app.business';
 import { SearchLayout } from './layouts';
-import { getSongs } from './api';
+import { getSongs } from './core/api';
 
 interface AppProps extends RouteComponentProps {}
 

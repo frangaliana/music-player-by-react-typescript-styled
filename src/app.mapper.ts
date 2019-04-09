@@ -1,4 +1,4 @@
-import { AM } from './api';
+import { AM } from './core/api';
 import * as VM from './components/song/song.model';
 
 export const mapSongsApiModelToViewModel = (song: AM.Song): VM.Song =>

@@ -12,25 +12,3 @@ export const SongPlayerContainer = styled.div<StyledSongContainerProps>`
   justify-content: center;
   align-items: center;
 `;
-
-export const ActionPlayerContainer = styled.div`
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding-left: 14rem;
-`;
-
-export const SocialNetworksContainer = styled.div`
-  flex: 0;
-  justify-self: flex-end;
-  display: flex;
-  padding-right: 2rem;
-`;
-
-export const ElementContainer = styled.div`
-  padding: 1rem;
-  &:hover {
-    cursor: pointer;
-  }
-`;
