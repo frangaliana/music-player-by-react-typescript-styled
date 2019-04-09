@@ -3,6 +3,8 @@ import { SongContainer } from '../song.component';
 import { SongPlayerContainer } from './song-player.styled';
 import { PlayerAction } from './song-player.model';
 import { Song } from '../song.model';
+import { ActionPlayer } from './action-player/action-player.component';
+import { SocialNetwork } from './social-network/social-network.component';
 
 interface SongPlayerProps {
   songContainer: SongContainer;
@@ -15,12 +17,12 @@ export const SongPlayerComponent: React.FunctionComponent<SongPlayerProps> = ({
   song,
   handlePlayer,
 }) => {
-  const onClickPlayer = (action: string) => handlePlayer(action, song);
+  const onClickPlayer = (action: keyof PlayerAction) => handlePlayer(action, song);
   const onClickNetwork = () => null;
 
   return (
     <SongPlayerContainer songContainer={songContainer}>
-      <ActionPlayer onClickPlayer={onClickPlayer} />
+      <ActionPlayer isFirst={song.isFirst} isLast={song.isLast} onClickPlayer={onClickPlayer} />
       <SocialNetwork onClickSocialNetwork={onClickNetwork} />
     </SongPlayerContainer>
   );

@@ -1,5 +1,8 @@
-import * as react from 'react';
-import { SocialNetworksContainer, ElementContainer } from './social-network.styled';
+import * as React from 'react';
+import { SocialNetworksContainer } from './social-network.styled';
+import { PlayerAction } from '../song-player.model';
+import { ElementContainer } from '../action-player/action-player.styled';
+import { SVGLoader } from '../../../../core/components';
 
 interface SocialNetworkProps {
   onClickSocialNetwork: (action: string) => void;
@@ -11,13 +14,13 @@ export const SocialNetwork: React.FunctionComponent<SocialNetworkProps> = props 
   return (
     <SocialNetworksContainer>
       <ElementContainer>
-        <SVGLoader imageSrc={require('../../../assets/images/share_twitter.svg')} />
+        <SVGLoader imageSrc={require('../../../../assets/images/share_twitter.svg')} />
       </ElementContainer>
       <ElementContainer>
-        <SVGLoader imageSrc={require('../../../assets/images/share_facebook.svg')} />
+        <SVGLoader imageSrc={require('../../../../assets/images/share_facebook.svg')} />
       </ElementContainer>
       <ElementContainer>
-        <SVGLoader imageSrc={require('../../../assets/images/share_whatsapp.svg')} />
+        <SVGLoader imageSrc={require('../../../../assets/images/share_whatsapp.svg')} />
       </ElementContainer>
     </SocialNetworksContainer>
   );

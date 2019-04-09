@@ -1,4 +1,4 @@
-import styled from '../../../styled-components';
+import styled from '../../../../styled-components';
 
 export const ActionPlayerContainer = styled.div`
   flex: 1;
@@ -8,9 +8,15 @@ export const ActionPlayerContainer = styled.div`
   padding-left: 14rem;
 `;
 
-export const ElementContainer = styled.div`
+export const ElementContainer = styled.button`
   padding: 1rem;
+  border: none;
+  background: none;
+  outline: none;
   &:hover {
     cursor: pointer;
+  }
+  &:disabled {
+    cursor: default;
   }
 `;

@@ -13,4 +13,6 @@ export const mapSongsApiModelToViewModel = (song: AM.Song): VM.Song =>
     trackName: song.trackName,
     trackPrice: song.trackPrice,
     trackTimeMillis: song.trackTimeMillis,
+    isFirst: false,
+    isLast: false,
   };

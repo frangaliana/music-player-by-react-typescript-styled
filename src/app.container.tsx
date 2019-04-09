@@ -2,7 +2,7 @@ import * as React from 'react';
 import { RouteComponentProps, Switch, Route, withRouter } from 'react-router';
 import { Song, NavigationBar, ContentContainer, SongComponent, PlayerAction } from './components';
 import { mapSongsApiModelToViewModel } from './app.mapper';
-import { replaceSong } from './app.business';
+import { replaceSong, mapPositionedSong } from './app.business';
 import { SearchLayout } from './layouts';
 import { getSongs } from './core/api';
 
@@ -34,14 +34,14 @@ export const AppInner: React.FunctionComponent<AppProps> = props => {
   }, [search]);
 
   const onClickSong = (song: Song) => {
-    setSong(song);
+    setSong(mapPositionedSong(songs, song));
     props.history.push(`/${song.trackId}`);
   };
 
   const handlePlayer = (action: keyof PlayerAction, song: Song) => {
     action && song && songs
       ? action === 'previous' || action === 'next'
-        ? setSong(replaceSong(songs, song, action))
+        ? setSong(mapPositionedSong(songs, replaceSong(songs, song, action)))
         : null // plays the song but I don't know what I have to do
       : null;
   };

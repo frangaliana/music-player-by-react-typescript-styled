@@ -15,6 +15,8 @@ describe('replaceSong should retrieve previous or next song', () => {
         trackName: 'ejemplo1',
         trackPrice: 1.2,
         trackTimeMillis: 1.2,
+        isFirst: true,
+        isLast: false,
       },
       {
         artistName: 'ejemplo2',
@@ -27,6 +29,8 @@ describe('replaceSong should retrieve previous or next song', () => {
         trackName: 'ejemplo2',
         trackPrice: 1.2,
         trackTimeMillis: 1.2,
+        isFirst: false,
+        isLast: false,
       },
       {
         artistName: 'ejemplo3',
@@ -39,6 +43,8 @@ describe('replaceSong should retrieve previous or next song', () => {
         trackName: 'ejemplo3',
         trackPrice: 1.2,
         trackTimeMillis: 1.2,
+        isFirst: false,
+        isLast: true,
       },
     ];
 
@@ -53,6 +59,8 @@ describe('replaceSong should retrieve previous or next song', () => {
       trackName: 'ejemplo2',
       trackPrice: 1.2,
       trackTimeMillis: 1.2,
+      isFirst: false,
+      isLast: false,
     };
 
     const action: keyof PlayerAction = 'previous';
@@ -68,6 +76,8 @@ describe('replaceSong should retrieve previous or next song', () => {
       trackName: 'ejemplo1',
       trackPrice: 1.2,
       trackTimeMillis: 1.2,
+      isFirst: false,
+      isLast: true,
     };
 
     const obtainedResult: Song = replaceSong(data, song, action);
@@ -88,6 +98,8 @@ describe('replaceSong should retrieve previous or next song', () => {
         trackName: 'ejemplo1',
         trackPrice: 1.2,
         trackTimeMillis: 1.2,
+        isFirst: true,
+        isLast: false,
       },
       {
         artistName: 'ejemplo2',
@@ -100,6 +112,8 @@ describe('replaceSong should retrieve previous or next song', () => {
         trackName: 'ejemplo2',
         trackPrice: 1.2,
         trackTimeMillis: 1.2,
+        isFirst: false,
+        isLast: false,
       },
       {
         artistName: 'ejemplo3',
@@ -112,6 +126,8 @@ describe('replaceSong should retrieve previous or next song', () => {
         trackName: 'ejemplo3',
         trackPrice: 1.2,
         trackTimeMillis: 1.2,
+        isFirst: false,
+        isLast: true,
       },
     ];
 
@@ -126,6 +142,8 @@ describe('replaceSong should retrieve previous or next song', () => {
       trackName: 'ejemplo2',
       trackPrice: 1.2,
       trackTimeMillis: 1.2,
+      isFirst: false,
+      isLast: false,
     };
 
     const action: keyof PlayerAction = 'next';
@@ -141,6 +159,8 @@ describe('replaceSong should retrieve previous or next song', () => {
       trackName: 'ejemplo3',
       trackPrice: 1.2,
       trackTimeMillis: 1.2,
+      isFirst: false,
+      isLast: true,
     };
 
     const obtainedResult: Song = replaceSong(data, song, action);
@@ -161,6 +181,8 @@ describe('replaceSong should retrieve previous or next song', () => {
         trackName: 'ejemplo1',
         trackPrice: 1.2,
         trackTimeMillis: 1.2,
+        isFirst: true,
+        isLast: false,
       },
       {
         artistName: 'ejemplo2',
@@ -173,6 +195,8 @@ describe('replaceSong should retrieve previous or next song', () => {
         trackName: 'ejemplo2',
         trackPrice: 1.2,
         trackTimeMillis: 1.2,
+        isFirst: false,
+        isLast: false,
       },
       {
         artistName: 'ejemplo3',
@@ -185,6 +209,8 @@ describe('replaceSong should retrieve previous or next song', () => {
         trackName: 'ejemplo3',
         trackPrice: 1.2,
         trackTimeMillis: 1.2,
+        isFirst: false,
+        isLast: true,
       },
     ];
 
@@ -199,6 +225,8 @@ describe('replaceSong should retrieve previous or next song', () => {
       trackName: 'ejemplo3',
       trackPrice: 1.2,
       trackTimeMillis: 1.2,
+      isFirst: false,
+      isLast: true,
     };
 
     const action: keyof PlayerAction = 'next';

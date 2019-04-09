@@ -9,4 +9,6 @@ export interface Song {
   trackName: string;
   trackPrice: number;
   trackTimeMillis: number;
+  isFirst: boolean;
+  isLast: boolean;
 }
