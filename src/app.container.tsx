@@ -1,54 +1,49 @@
-import axios from 'axios';
 import * as React from 'react';
-import { Route, RouteComponentProps, Switch, withRouter } from 'react-router';
-import { songsApiModelToViewModel } from './app.mappers';
-import { ContentContainer, NavigationBar } from './components';
+import { RouteComponentProps, Switch, Route, withRouter } from 'react-router';
+import { Song, NavigationBar, ContentContainer, SongComponent, PlayerAction } from './components';
+import { mapSongsApiModelToViewModel } from './app.mapper';
+import { replaceSong, mapPositionedSong } from './app.business';
 import { SearchLayout } from './layouts';
-import { ResultApiModel, Song } from './models';
-import { SongComponent } from './components/song.component';
+import { getSongs } from './core/api';
 
 interface AppProps extends RouteComponentProps {}
-
-const initialSearchState: string = '';
-const initialSongsState: Song[] = [];
-const initialLoadingState: boolean = false;
-const initialSongState: Song = null;
 
 export const AppInner: React.FunctionComponent<AppProps> = props => {
   const pageTitle = 'Music Player';
 
-  const [search, setSearch] = React.useState(initialSearchState);
+  const [search, setSearch] = React.useState<string>('');
   const handleChange = (newSearch: string) => {
     setSearch(newSearch);
     props.history.push('/');
   };
   const changeToHome = () => props.history.push('/');
 
-  const [songs, setSongs] = React.useState(initialSongsState);
+  const [songs, setSongs] = React.useState<Song[]>([]);
 
-  const [isLoading, setIsLoading] = React.useState(initialLoadingState);
+  const [isLoading, setIsLoading] = React.useState<boolean>(false);
 
-  const [song, setSong] = React.useState(initialSongState);
+  const [song, setSong] = React.useState<Song>(null);
 
   React.useEffect(() => {
     setIsLoading(true);
 
-    axios
-      .get<ResultApiModel>('https://itunes.apple.com/search', {
-        params: {
-          term: search,
-          limit: 5,
-        },
-      })
-      .then(result => {
-        setSongs(songsApiModelToViewModel(result.data));
-        setIsLoading(false);
-      });
+    getSongs(search).then(searchResult => {
+      setSongs(searchResult.results.map(song => mapSongsApiModelToViewModel(song)));
+      setIsLoading(false);
+    });
   }, [search]);
 
   const onClickSong = (song: Song) => {
-    setSong(song);
+    setSong(mapPositionedSong(songs, song));
     props.history.push(`/${song.trackId}`);
+  };
+
+  const handlePlayer = (action: keyof PlayerAction, song: Song) => {
+    action && song && songs
+      ? action === 'previous' || action === 'next'
+        ? setSong(mapPositionedSong(songs, replaceSong(songs, song, action)))
+        : null // plays the song but I don't know what I have to do
+      : null;
   };
 
   return (
@@ -71,7 +66,7 @@ export const AppInner: React.FunctionComponent<AppProps> = props => {
               <ContentContainer isLoading={isLoading} search={search} songs={songs} onClickSong={onClickSong} />
             )}
           />
-          <Route exact path="/:songName" render={() => <SongComponent song={song} />} />
+          <Route exact path="/:songName" render={() => <SongComponent song={song} handlePlayer={handlePlayer} />} />
         </Switch>
       }
     />
