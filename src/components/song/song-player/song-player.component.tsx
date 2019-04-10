@@ -28,7 +28,7 @@ export const SongPlayerComponent: React.FunctionComponent<SongPlayerProps> = ({
         previewUrl={song.previewUrl}
         onClickPlayer={onClickPlayer}
       />
-      <SocialNetwork onClickSocialNetwork={onClickNetwork} />
+      <SocialNetwork song={song} onClickSocialNetwork={onClickNetwork} />
     </SongPlayerContainer>
   );
 };
