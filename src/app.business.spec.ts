@@ -1,7 +1,47 @@
 import { Song, PlayerAction } from './components';
-import { replaceSong, normalizeText, orderByField } from './app.business';
+import { replaceSong, normalizeText, orderByField, mapPositionedSong } from './app.business';
 
-describe('replaceSong should retrieve previous or next song', () => {
+describe('mapPositionedSong method', () => {
+  it('should retrieve same song with new attributes (isFirst, isLast)', () => {
+    const songData: Song = {
+      artistName: 'ejemplo1',
+      artworkUrl60: 'ejemplo1',
+      artworkUrl100: 'ejemplo1',
+      collectionName: 'ejemplo1',
+      previewUrl: 'ejemplo1',
+      primaryGenreName: 'ejemplo1',
+      trackId: 1,
+      trackName: 'ejemplo1',
+      trackPrice: 1.2,
+      trackTimeMillis: 1.2,
+      isFirst: false,
+      isLast: false,
+    };
+
+    const songsData: Song[] = [songData];
+
+    const expectedResult: Song = {
+      artistName: 'ejemplo1',
+      artworkUrl60: 'ejemplo1',
+      artworkUrl100: 'ejemplo1',
+      collectionName: 'ejemplo1',
+      previewUrl: 'ejemplo1',
+      primaryGenreName: 'ejemplo1',
+      trackId: 1,
+      trackName: 'ejemplo1',
+      trackPrice: 1.2,
+      trackTimeMillis: 1.2,
+      isFirst: true,
+      isLast: true,
+    };
+
+    const obtainedResult: Song = mapPositionedSong(songsData, songData);
+
+    expect(obtainedResult).toEqual(expectedResult);
+  });
+});
+
+describe('replaceSong method', () => {
   it('should retrieve previous song', () => {
     const data: Song[] = [
       {
@@ -239,7 +279,7 @@ describe('replaceSong should retrieve previous or next song', () => {
   });
 });
 
-describe('normalizeText(value) function', () => {
+describe('normalizeText method', () => {
   it('should return empty when input argument is null', () => {
     const text: string = null;
 
@@ -288,8 +328,8 @@ describe('normalizeText(value) function', () => {
   });
 });
 
-describe('sortByField should order an array by one of its fields', () => {
-  it('should order by an existing field', () => {
+describe('orderByField method', () => {
+  it('should order by an existing field(string)', () => {
     const objectToTest: Song[] = [
       {
         artistName: 'pepe',
@@ -321,6 +361,78 @@ describe('sortByField should order an array by one of its fields', () => {
       },
     ];
     const result = objectToTest.sort(orderByField('artistName', false));
+
+    expect(result).toEqual(objectToTest);
+  });
+
+  it('should order by an existing field(number)', () => {
+    const objectToTest: Song[] = [
+      {
+        artistName: 'pepe',
+        artworkUrl60: 'string',
+        artworkUrl100: 'string',
+        collectionName: 'example',
+        previewUrl: 'string',
+        primaryGenreName: 'example two',
+        trackId: 1,
+        trackName: 'string',
+        trackPrice: 1,
+        trackTimeMillis: 1,
+        isFirst: false,
+        isLast: false,
+      },
+      {
+        artistName: 'julio',
+        artworkUrl60: 'string',
+        artworkUrl100: 'string',
+        collectionName: 'example',
+        previewUrl: 'string',
+        primaryGenreName: 'example two',
+        trackId: 1,
+        trackName: 'string',
+        trackPrice: 1,
+        trackTimeMillis: 2,
+        isFirst: false,
+        isLast: false,
+      },
+    ];
+    const result = objectToTest.sort(orderByField('trackTimeMillis', false));
+
+    expect(result).toEqual(objectToTest);
+  });
+
+  it('should order by an existing field(string) and reverse', () => {
+    const objectToTest: Song[] = [
+      {
+        artistName: 'pepe',
+        artworkUrl60: 'string',
+        artworkUrl100: 'string',
+        collectionName: 'example',
+        previewUrl: 'string',
+        primaryGenreName: 'example two',
+        trackId: 1,
+        trackName: 'string',
+        trackPrice: 1,
+        trackTimeMillis: 1,
+        isFirst: false,
+        isLast: false,
+      },
+      {
+        artistName: 'julio',
+        artworkUrl60: 'string',
+        artworkUrl100: 'string',
+        collectionName: 'example',
+        previewUrl: 'string',
+        primaryGenreName: 'example two',
+        trackId: 1,
+        trackName: 'string',
+        trackPrice: 1,
+        trackTimeMillis: 1,
+        isFirst: false,
+        isLast: false,
+      },
+    ];
+    const result = objectToTest.sort(orderByField('artistName', true));
 
     expect(result).toEqual(objectToTest);
   });
