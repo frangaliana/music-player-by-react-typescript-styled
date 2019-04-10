@@ -11,9 +11,11 @@ export const StyledTable = styled.table`
 
 interface StyledHeaderColumnProps {
   isPrimary?: boolean;
+  noPointer?: boolean;
 }
 
 export const StyledHeaderColumn = styled.th<StyledHeaderColumnProps>`
+  cursor: ${({ noPointer }) => (noPointer ? 'default' : 'pointer')};
   padding: 1rem 2rem;
   text-align: left;
   font-size: 1.2rem;

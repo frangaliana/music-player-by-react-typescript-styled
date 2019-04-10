@@ -2,9 +2,10 @@ import * as React from 'react';
 import { RouteComponentProps, Switch, Route, withRouter } from 'react-router';
 import { Song, NavigationBar, ContentContainer, SongComponent, PlayerAction } from './components';
 import { mapSongsApiModelToViewModel } from './app.mapper';
-import { replaceSong, mapPositionedSong } from './app.business';
+import { replaceSong, mapPositionedSong, orderByField } from './app.business';
 import { SearchLayout } from './layouts';
 import { getSongs } from './core/api';
+import { OrderItems } from './components/content-container/table';
 
 interface AppProps extends RouteComponentProps {}
 
@@ -38,11 +39,15 @@ export const AppInner: React.FunctionComponent<AppProps> = props => {
     props.history.push(`/${song.trackId}`);
   };
 
+  const clickOnOrder = (orderBy: keyof OrderItems) => {
+    setSongs(songs.sort(orderByField(orderBy, false)));
+  };
+
   const handlePlayer = (action: keyof PlayerAction, song: Song) => {
     action && song && songs
       ? action === 'previous' || action === 'next'
         ? setSong(mapPositionedSong(songs, replaceSong(songs, song, action)))
-        : null // plays the song but I don't know what I have to do
+        : null
       : null;
   };
 
@@ -63,7 +68,13 @@ export const AppInner: React.FunctionComponent<AppProps> = props => {
             exact
             path="/"
             render={() => (
-              <ContentContainer isLoading={isLoading} search={search} songs={songs} onClickSong={onClickSong} />
+              <ContentContainer
+                isLoading={isLoading}
+                search={search}
+                songs={songs}
+                onClickSong={onClickSong}
+                clickOnOrder={clickOnOrder}
+              />
             )}
           />
           <Route exact path="/:songName" render={() => <SongComponent song={song} handlePlayer={handlePlayer} />} />
