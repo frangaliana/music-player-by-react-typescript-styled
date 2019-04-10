@@ -7,7 +7,7 @@ interface ActionPlayerProps {
   isFirst: boolean;
   isLast: boolean;
   previewUrl: string;
-  onClickPlayer: (action: string) => void;
+  onClickPlayer: (action: keyof PlayerAction) => void;
 }
 
 interface playItem {

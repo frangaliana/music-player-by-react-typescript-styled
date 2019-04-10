@@ -6,13 +6,14 @@ import {
   DotWrapper,
   Dot,
 } from './content-container.styled';
-import { SongsTable } from './table';
+import { SongsTable, OrderItems } from './table';
 import { Song } from '../song';
 
 interface ContentContainerProps {
   isLoading: boolean;
   search: string;
   songs: Song[];
+  clickOnOrder: (orderBy: keyof OrderItems) => void;
   onClickSong: (song: Song) => void;
 }
 
@@ -20,6 +21,7 @@ export const ContentContainer: React.FunctionComponent<ContentContainerProps> = 
   isLoading,
   search,
   songs,
+  clickOnOrder,
   onClickSong,
 }) => {
   const searchResult =
@@ -30,7 +32,7 @@ export const ContentContainer: React.FunctionComponent<ContentContainerProps> = 
       </StyledCenterContainer>
     ) : (
       <StyledSongsTableContainer>
-        <SongsTable search={search} songs={songs} onClickSong={onClickSong} />
+        <SongsTable search={search} songs={songs} onClickSong={onClickSong} clickOnOrder={clickOnOrder} />
       </StyledSongsTableContainer>
     );
 
