@@ -1,3 +1,3 @@
-export * from './navigation-bar.component';
-export * from './content-container.component';
-export * from './songs-table.component';
+export * from './navigation-bar';
+export * from './content-container';
+export * from './song';

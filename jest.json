@@ -1,0 +1,24 @@
+{
+  "roots": ["<rootDir>/src"],
+  "testPathIgnorePatterns": [
+    "<rootDir>/build/",
+    "<rootDir>/config/",
+    "<rootDir>/docs/",
+    "<rootDir>/host/",
+    "<rootDir>/node_modules/"
+  ],
+  "testRegex": "((\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+  "moduleFileExtensions": ["js", "jsx", "json", "ts", "tsx", "node"],
+  "transform": {
+    "^.+\\.jsx?$": "babel-jest",
+    "^.+\\.tsx?$": "ts-jest"
+  },
+  "transformIgnorePatterns": ["/node_modules/(?!transpile-me|transpile-me-too).+(js|jsx)$", "/cypress/"],
+  "moduleNameMapper": {
+    "^.+\\.s?css$": "identity-obj-proxy"
+  },
+  "setupFiles": ["<rootDir>/config/jest/polyfills.js", "<rootDir>/config/jest/setupJest.js"],
+  "snapshotSerializers": ["enzyme-to-json/serializer"],
+  "testURL": "http://localhost/",
+  "reporters": ["default", "jest-junit"]
+}
