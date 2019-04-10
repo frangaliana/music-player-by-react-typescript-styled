@@ -40,7 +40,8 @@ export const AppInner: React.FunctionComponent<AppProps> = props => {
   };
 
   const clickOnOrder = (orderBy: keyof OrderItems) => {
-    setSongs(songs.sort(orderByField(orderBy, false)));
+    const newSongs = [...songs.sort(orderByField(orderBy, false))];
+    setSongs(newSongs);
   };
 
   const handlePlayer = (action: keyof PlayerAction, song: Song) => {
