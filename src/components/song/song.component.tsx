@@ -11,6 +11,7 @@ export interface SongContainer {
 
 interface SongComponentProps {
   song: Song;
+  isPlaying: boolean;
   handlePlayer: (action: keyof PlayerAction, song: Song) => void;
 }
 
@@ -19,11 +20,16 @@ const songContainer: SongContainer = {
   songPlayer: 'song-player-item',
 };
 
-export const SongComponent: React.FunctionComponent<SongComponentProps> = ({ song, handlePlayer }) => {
+export const SongComponent: React.FunctionComponent<SongComponentProps> = ({ song, isPlaying, handlePlayer }) => {
   return (
     <StyledSongContainer songContainer={songContainer}>
       <SongDetailsComponent songContainer={songContainer} song={song} />
-      <SongPlayerComponent songContainer={songContainer} song={song} handlePlayer={handlePlayer} />
+      <SongPlayerComponent
+        songContainer={songContainer}
+        song={song}
+        isPlaying={isPlaying}
+        handlePlayer={handlePlayer}
+      />
     </StyledSongContainer>
   );
 };

@@ -9,26 +9,22 @@ import { SocialNetwork } from './social-network/social-network.component';
 interface SongPlayerProps {
   songContainer: SongContainer;
   song: Song;
+  isPlaying: boolean;
   handlePlayer: (action: keyof PlayerAction, song: Song) => void;
 }
 
 export const SongPlayerComponent: React.FunctionComponent<SongPlayerProps> = ({
   songContainer,
   song,
+  isPlaying,
   handlePlayer,
 }) => {
   const onClickPlayer = (action: keyof PlayerAction) => handlePlayer(action, song);
-  const onClickNetwork = () => null;
 
   return (
     <SongPlayerContainer songContainer={songContainer}>
-      <ActionPlayer
-        isFirst={song.isFirst}
-        isLast={song.isLast}
-        previewUrl={song.previewUrl}
-        onClickPlayer={onClickPlayer}
-      />
-      <SocialNetwork song={song} onClickSocialNetwork={onClickNetwork} />
+      <ActionPlayer isFirst={song.isFirst} isLast={song.isLast} isPlaying={isPlaying} onClickPlayer={onClickPlayer} />
+      <SocialNetwork song={song} />
     </SongPlayerContainer>
   );
 };

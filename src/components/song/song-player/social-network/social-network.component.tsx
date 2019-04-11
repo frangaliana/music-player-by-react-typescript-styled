@@ -8,7 +8,6 @@ import { normalizeText } from '../../../../app.business';
 
 interface SocialNetworkProps {
   song: Song;
-  onClickSocialNetwork: (action: string) => void;
 }
 
 export const SocialNetwork: React.FunctionComponent<SocialNetworkProps> = ({ song }) => {

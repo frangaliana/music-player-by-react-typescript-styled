@@ -6,8 +6,8 @@ import { PlayerAction } from '../song-player.model';
 interface ActionPlayerProps {
   isFirst: boolean;
   isLast: boolean;
-  previewUrl: string;
-  onClickPlayer: (action: keyof PlayerAction) => void;
+  isPlaying: boolean;
+  onClickPlayer: (action: keyof PlayerAction, previewUrl?: string) => void;
 }
 
 interface playItem {
@@ -16,32 +16,13 @@ interface playItem {
 }
 
 export const ActionPlayer: React.FunctionComponent<ActionPlayerProps> = ({
-  previewUrl,
   isFirst,
   isLast,
+  isPlaying,
   onClickPlayer,
 }) => {
-  const [audio, setAudio] = React.useState(null);
-  const [playing, setPlaying] = React.useState(false);
-
-  React.useEffect(() => {
-    setAudio(new Audio(previewUrl));
-  }, [previewUrl]);
-
-  const handleClick = (action: keyof PlayerAction) => (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    if (action === 'play') {
-      audio.play();
-      setPlaying(true);
-    } else if (action === 'pause') {
-      audio.pause();
-      setPlaying(false);
-    } else {
-      audio.pause();
-      setAudio(null);
-      setPlaying(false);
-      onClickPlayer(action);
-    }
-  };
+  const handleClick = (action: keyof PlayerAction) => (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) =>
+    onClickPlayer(action);
 
   const previousSrc = isFirst
     ? require('../../../../assets/images/player_previous_disabled.svg')
@@ -51,7 +32,7 @@ export const ActionPlayer: React.FunctionComponent<ActionPlayerProps> = ({
     ? require('../../../../assets/images/player_next_disabled.svg')
     : require('../../../../assets/images/player_next_enabled.svg');
 
-  const playItem: playItem = playing
+  const playItem: playItem = isPlaying
     ? { playAction: 'pause', playSrc: require('../../../../assets/images/player_pause.svg') }
     : { playAction: 'play', playSrc: require('../../../../assets/images/player_play.svg') };
 

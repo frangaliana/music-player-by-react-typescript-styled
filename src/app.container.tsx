@@ -15,16 +15,15 @@ export const AppInner: React.FunctionComponent<AppProps> = props => {
   const [search, setSearch] = React.useState<string>('');
   const handleChange = (newSearch: string) => {
     setSearch(newSearch);
+
+    if (audio) audio.pause();
+    setAudio(null);
+    setPlaying(false);
+
     props.history.push('/');
   };
-  const changeToHome = () => props.history.push('/');
 
   const [songs, setSongs] = React.useState<Song[]>([]);
-
-  const [isLoading, setIsLoading] = React.useState<boolean>(false);
-
-  const [song, setSong] = React.useState<Song>(null);
-
   React.useEffect(() => {
     setIsLoading(true);
 
@@ -34,6 +33,8 @@ export const AppInner: React.FunctionComponent<AppProps> = props => {
     });
   }, [search]);
 
+  const [isLoading, setIsLoading] = React.useState<boolean>(false);
+  const [song, setSong] = React.useState<Song>(null);
   const onClickSong = (song: Song) => {
     setSong(mapPositionedSong(songs, song));
     props.history.push(`/${song.trackId}`);
@@ -44,12 +45,38 @@ export const AppInner: React.FunctionComponent<AppProps> = props => {
     setSongs(newSongs);
   };
 
+  const [audio, setAudio] = React.useState(null);
+  const [isPlaying, setPlaying] = React.useState(false);
+  React.useEffect(() => {
+    if (song) {
+      setAudio(new Audio(song.previewUrl));
+
+      return () => setAudio(null);
+    }
+  }, [song && song.previewUrl]);
+
+  const changeToHome = () => {
+    audio.pause();
+    setAudio(null);
+    setPlaying(false);
+    props.history.push('/');
+  };
+
   const handlePlayer = (action: keyof PlayerAction, song: Song) => {
-    action && song && songs
-      ? action === 'previous' || action === 'next'
-        ? setSong(mapPositionedSong(songs, replaceSong(songs, song, action)))
-        : null
-      : null;
+    if (action && song && songs) {
+      if (action === 'previous' || action === 'next') {
+        audio.pause();
+        setAudio(null);
+        setPlaying(false);
+        setSong(mapPositionedSong(songs, replaceSong(songs, song, action)));
+      } else if (action === 'play') {
+        audio.play();
+        setPlaying(true);
+      } else if (action === 'pause') {
+        audio.pause();
+        setPlaying(false);
+      }
+    }
   };
 
   return (
@@ -78,7 +105,11 @@ export const AppInner: React.FunctionComponent<AppProps> = props => {
               />
             )}
           />
-          <Route exact path="/:songName" render={() => <SongComponent song={song} handlePlayer={handlePlayer} />} />
+          <Route
+            exact
+            path="/:songName"
+            render={() => <SongComponent song={song} handlePlayer={handlePlayer} isPlaying={isPlaying} />}
+          />
         </Switch>
       }
     />
