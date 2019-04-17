@@ -1,6 +1,11 @@
 # Music Player Example
 
-Project about a music player example developed with React (with Hooks), Typescript, Redux, also Redux-Saga, and Styled-Components.
+## Content
+Project about a music player example developed with React (with Hooks), Typescript and Styled-Components.
+
+I made this project with the aim of making an approach to how to work with Hooks and see the power that can have the styled-components library in my developments.
+
+I'm open to any opinion or other alternatives to my code in order to improve it.
 
 Note: To return data I use the API example of iTunes (Apple).
 
@@ -10,3 +15,5 @@ You'll only have to follow the instructions below to be able to reproduce the pr
 
 1. `yarn install`
 2. `yarn start`
+(Optional) If you want to run tests, you have to run the following script: `yarn test` or `thread test: coverage`
+
