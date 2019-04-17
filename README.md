@@ -1,7 +1,7 @@
 # Music Player Example
 
 ## Content
-Project about a music player example developed with React (with Hooks), Typescript and Styled-Components.
+Project about a music player example developed with React (with Hooks), Typescript, Styled-Components and Jest.
 
 I made this project with the aim of making an approach to how to work with Hooks and see the power that can have the styled-components library in my developments.
 
